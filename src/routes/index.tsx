@@ -4,6 +4,14 @@ import heroImg from "@/assets/hero.jpg";
 import g9xImg from "@/assets/g9x.jpg";
 import eos4000dImg from "@/assets/eos4000d.jpg";
 import nikonImg from "@/assets/nikonl120.jpg";
+import client11 from "@/assets/clients/client-11.png.asset.json";
+import client12 from "@/assets/clients/client-12.png.asset.json";
+import client13 from "@/assets/clients/client-13.png.asset.json";
+import client14 from "@/assets/clients/client-14.png.asset.json";
+import client15 from "@/assets/clients/client-15.png.asset.json";
+import client16 from "@/assets/clients/client-16.png.asset.json";
+
+const clients = [client11, client15, client12, client14, client16, client13];
 
 export const Route = createFileRoute("/")({
   head: () => ({
