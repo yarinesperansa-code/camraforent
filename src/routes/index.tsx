@@ -4,6 +4,14 @@ import heroImg from "@/assets/hero.jpg";
 import g9xImg from "@/assets/g9x.jpg";
 import eos4000dImg from "@/assets/eos4000d.jpg";
 import nikonImg from "@/assets/nikonl120.jpg";
+import client11 from "@/assets/clients/client-11.png.asset.json";
+import client12 from "@/assets/clients/client-12.png.asset.json";
+import client13 from "@/assets/clients/client-13.png.asset.json";
+import client14 from "@/assets/clients/client-14.png.asset.json";
+import client15 from "@/assets/clients/client-15.png.asset.json";
+import client16 from "@/assets/clients/client-16.png.asset.json";
+
+const clients = [client11, client15, client12, client14, client16, client13];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -177,6 +185,42 @@ function Index() {
           </ul>
         </div>
       </section>
+
+      {/* CLIENTS */}
+      <section id="clients" className="bg-secondary/30 py-24 md:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-xs tracking-[0.4em] uppercase text-primary mb-4">Our clients</p>
+            <h2 className="text-4xl md:text-5xl mb-4">הלקוחות שלנו</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">רגעים אמיתיים שנתפסו במצלמות שלנו — תודה לכל מי שבחר בנו.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+            {clients.map((c, i) => (
+              <div
+                key={i}
+                className={`relative overflow-hidden rounded-2xl bg-blush group ${
+                  i === 0 || i === 5 ? "row-span-2 aspect-[3/5]" : "aspect-[3/4]"
+                }`}
+              >
+                <img
+                  src={c.url}
+                  alt={`לקוחה מאושרת ${i + 1}`}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <a href="https://instagram.com/tahelhamra" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm border border-foreground/20 rounded-full px-6 py-3 hover:bg-foreground hover:text-background transition">
+              <Instagram className="w-4 h-4" /> עוד באינסטגרם
+            </a>
+          </div>
+        </div>
+      </section>
+
+
 
       {/* CTA / CONTACT */}
       <section id="contact" className="bg-primary text-primary-foreground py-24 md:py-32">
