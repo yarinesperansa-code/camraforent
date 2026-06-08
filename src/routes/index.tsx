@@ -186,7 +186,7 @@ function Index() {
         </div>
       </section>
 
-      {/* CLIENTS */}
+      {/* CLIENTS — masonry gallery */}
       <section id="clients" className="bg-secondary/30 py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -194,24 +194,24 @@ function Index() {
             <h2 className="text-4xl md:text-5xl mb-4">הלקוחות שלנו</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">רגעים אמיתיים שנתפסו במצלמות שלנו — תודה לכל מי שבחר בנו.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+
+          <div className="columns-2 md:columns-3 gap-4 space-y-4">
             {clients.map((c, i) => (
               <div
                 key={i}
-                className={`relative overflow-hidden rounded-2xl bg-blush group ${
-                  i === 0 || i === 5 ? "row-span-2 aspect-[3/5]" : "aspect-[3/4]"
-                }`}
+                className="relative overflow-hidden rounded-2xl bg-blush break-inside-avoid group"
               >
                 <img
                   src={c.url}
-                  alt={`לקוחה מאושרת ${i + 1}`}
+                  alt={`תמונת לקוח ${i + 1}`}
                   loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
               </div>
             ))}
           </div>
+
           <div className="text-center mt-12">
             <a href="https://instagram.com/tahelhamra" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm border border-foreground/20 rounded-full px-6 py-3 hover:bg-foreground hover:text-background transition">
               <Instagram className="w-4 h-4" /> עוד באינסטגרם
@@ -219,6 +219,7 @@ function Index() {
           </div>
         </div>
       </section>
+
 
 
 
