@@ -63,7 +63,10 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html { direction: rtl; }
+  html {
+    direction: rtl;
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
