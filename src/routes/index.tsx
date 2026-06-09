@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle } from "lucide-react";
+import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import heroImg from "@/assets/hero.jpg";
 import g9xImg from "@/assets/g9x.jpg";
@@ -262,6 +262,7 @@ function Index() {
 function RevealGallery() {
   const [open, setOpen] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     const items = containerRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
@@ -281,7 +282,41 @@ function RevealGallery() {
     return () => io.disconnect();
   }, []);
 
+  const activeIndex = open ?? -1;
   const active = open !== null ? clients[open] : null;
+
+  const goNext = () => {
+    if (activeIndex < clients.length - 1) setOpen(activeIndex + 1);
+    else setOpen(0);
+  };
+
+  const goPrev = () => {
+    if (activeIndex > 0) setOpen(activeIndex - 1);
+    else setOpen(clients.length - 1);
+  };
+
+  useEffect(() => {
+    if (open === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "Escape") setOpen(null);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [open, activeIndex]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].screenX - touchStartX.current;
+    if (deltaX < -50) goNext();
+    if (deltaX > 50) goPrev();
+    touchStartX.current = null;
+  };
 
   return (
     <>
@@ -311,10 +346,31 @@ function RevealGallery() {
       </div>
 
       <Dialog open={open !== null} onOpenChange={(o) => !o && setOpen(null)}>
-        <DialogContent className="max-w-2xl p-0 overflow-hidden bg-background border-primary/20">
+        <DialogContent
+          className="max-w-2xl p-0 overflow-hidden bg-background border-primary/20 select-none"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           {active && (
-            <div className="flex flex-col">
+            <div className="flex flex-col relative">
               <img src={active.img.url} alt={`תמונת לקוח צולמה עם ${active.camera}`} className="w-full max-h-[70vh] object-contain bg-blush" />
+
+              {/* Arrows */}
+              <button
+                onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                className="absolute top-1/2 right-2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground rounded-full p-2 backdrop-blur-sm transition shadow"
+                aria-label="תמונה קודמת"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+              <button
+                onClick={(e) => { e.stopPropagation(); goNext(); }}
+                className="absolute top-1/2 left-2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground rounded-full p-2 backdrop-blur-sm transition shadow"
+                aria-label="תמונה הבאה"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+
               <div className="p-6 text-center">
                 <p className="text-xs tracking-[0.4em] uppercase text-primary mb-2">Captured with</p>
                 <DialogTitle className="text-2xl mb-2 flex items-center justify-center gap-2">
@@ -323,6 +379,7 @@ function RevealGallery() {
                 <DialogDescription className="text-sm text-muted-foreground">
                   התמונה הזו צולמה במצלמה {active.camera} — אחת מהמצלמות הזמינות להשכרה.
                 </DialogDescription>
+                <p className="text-xs text-muted-foreground mt-3">{activeIndex + 1} / {clients.length}</p>
               </div>
             </div>
           )}
