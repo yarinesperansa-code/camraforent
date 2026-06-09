@@ -208,22 +208,8 @@ function Index() {
             <p className="text-muted-foreground max-w-xl mx-auto">רגעים אמיתיים שנתפסו במצלמות שלנו — תודה לכל מי שבחר בנו.</p>
           </div>
 
-          <div className="columns-2 md:columns-3 gap-4 space-y-4">
-            {clients.map((c, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden rounded-2xl bg-blush break-inside-avoid group"
-              >
-                <img
-                  src={c.url}
-                  alt={`תמונת לקוח ${i + 1}`}
-                  loading="lazy"
-                  className="w-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
-              </div>
-            ))}
-          </div>
+          <RevealGallery />
+
 
           <div className="text-center mt-12">
             <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm border border-foreground/20 rounded-full px-6 py-3 hover:bg-foreground hover:text-background transition">
