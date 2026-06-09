@@ -258,3 +258,76 @@ function Index() {
     </div>
   );
 }
+
+function RevealGallery() {
+  const [open, setOpen] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const items = containerRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
+    if (!items) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("reveal-in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+    items.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const active = open !== null ? clients[open] : null;
+
+  return (
+    <>
+      <div ref={containerRef} className="columns-2 md:columns-3 gap-4 space-y-4">
+        {clients.map((c, i) => (
+          <button
+            key={i}
+            data-reveal
+            onClick={() => setOpen(i)}
+            style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+            className="reveal-init relative block w-full overflow-hidden rounded-2xl bg-blush break-inside-avoid group cursor-pointer text-right"
+          >
+            <img
+              src={c.img.url}
+              alt={`תמונת לקוח צולמה עם ${c.camera}`}
+              loading="lazy"
+              className="w-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/0 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
+            <div className="absolute bottom-0 inset-x-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition duration-500">
+              <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase bg-background/90 text-foreground rounded-full px-3 py-1.5">
+                <Camera className="w-3 h-3" /> {c.camera}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <Dialog open={open !== null} onOpenChange={(o) => !o && setOpen(null)}>
+        <DialogContent className="max-w-2xl p-0 overflow-hidden bg-background border-primary/20">
+          {active && (
+            <div className="flex flex-col">
+              <img src={active.img.url} alt={`תמונת לקוח צולמה עם ${active.camera}`} className="w-full max-h-[70vh] object-contain bg-blush" />
+              <div className="p-6 text-center">
+                <p className="text-xs tracking-[0.4em] uppercase text-primary mb-2">Captured with</p>
+                <DialogTitle className="text-2xl mb-2 flex items-center justify-center gap-2">
+                  <Camera className="w-5 h-5" /> {active.camera}
+                </DialogTitle>
+                <DialogDescription className="text-sm text-muted-foreground">
+                  התמונה הזו צולמה במצלמה {active.camera} — אחת מהמצלמות הזמינות להשכרה.
+                </DialogDescription>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
