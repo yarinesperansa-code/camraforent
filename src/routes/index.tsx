@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import heroImg from "@/assets/hero.jpg";
 import g9xImg from "@/assets/g9x.jpg";
 import eos4000dImg from "@/assets/eos4000d.jpg";
@@ -11,7 +13,18 @@ import client14 from "@/assets/clients/client-14.png.asset.json";
 import client15 from "@/assets/clients/client-15.png.asset.json";
 import client16 from "@/assets/clients/client-16.png.asset.json";
 
-const clients = [client11, client15, client12, client14, client16, client13];
+const G9X = "Canon G9X Mark II";
+const EOS = "Canon EOS 4000D";
+
+// סדר התצוגה במסונרי (RTL, 3 עמודות): ימין למעלה→למטה, אמצע למעלה→למטה, שמאל למעלה→למטה
+const clients = [
+  { img: client11, camera: G9X }, // ימין למעלה
+  { img: client15, camera: EOS }, // ימין למטה
+  { img: client12, camera: EOS }, // אמצע למעלה
+  { img: client14, camera: G9X }, // אמצע למטה
+  { img: client16, camera: G9X }, // שמאל למעלה
+  { img: client13, camera: G9X }, // שמאל למטה
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
