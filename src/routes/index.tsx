@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle } from "lucide-react";
+import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import heroImg from "@/assets/hero.jpg";
 import g9xImg from "@/assets/g9x.jpg";
