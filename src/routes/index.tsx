@@ -84,7 +84,7 @@ function Index() {
               <a href="#cameras" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-6 py-3 text-sm hover:opacity-90 transition">
                 <Sparkles className="w-4 h-4" /> בחרו מצלמה
               </a>
-              <a href="https://instagram.com/tahelhamra" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
+              <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
                 <Instagram className="w-4 h-4" /> DM להזמנות
               </a>
             </div>
@@ -213,7 +213,7 @@ function Index() {
           </div>
 
           <div className="text-center mt-12">
-            <a href="https://instagram.com/tahelhamra" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm border border-foreground/20 rounded-full px-6 py-3 hover:bg-foreground hover:text-background transition">
+            <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm border border-foreground/20 rounded-full px-6 py-3 hover:bg-foreground hover:text-background transition">
               <Instagram className="w-4 h-4" /> עוד באינסטגרם
             </a>
           </div>
@@ -238,7 +238,7 @@ function Index() {
             <a href="https://wa.me/972507755668" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-primary-foreground/40 rounded-full px-6 py-3 text-sm hover:bg-primary-foreground/10 transition">
               <MessageCircle className="w-4 h-4" /> וואטסאפ
             </a>
-            <a href="https://instagram.com/tahelhamra" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-primary-foreground/40 rounded-full px-6 py-3 text-sm hover:bg-primary-foreground/10 transition">
+            <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-primary-foreground/40 rounded-full px-6 py-3 text-sm hover:bg-primary-foreground/10 transition">
               <Instagram className="w-4 h-4" /> Instagram
             </a>
           </div>
