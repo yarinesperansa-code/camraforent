@@ -3,9 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { Camera, MapPin, Phone, Instagram, Sparkles, Truck, Heart, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import heroImg from "@/assets/hero.jpg";
-import g9xImg from "@/assets/g9x.jpg";
-import eos4000dImg from "@/assets/eos4000d.jpg";
-import nikonImg from "@/assets/nikonl120.jpg";
+import g9xAsset from "@/assets/g9x.png.asset.json";
+import eos4000dAsset from "@/assets/eos4000d.png.asset.json";
+import nikonAsset from "@/assets/nikonl120.png.asset.json";
+const g9xImg = g9xAsset.url;
+const eos4000dImg = eos4000dAsset.url;
+const nikonImg = nikonAsset.url;
 import client11 from "@/assets/clients/client-11.png.asset.json";
 import client12 from "@/assets/clients/client-12.png.asset.json";
 import client13 from "@/assets/clients/client-13.png.asset.json";
@@ -97,8 +100,8 @@ function Index() {
               <a href="#cameras" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-6 py-3 text-sm hover:opacity-90 transition">
                 <Sparkles className="w-4 h-4" /> בחרו מצלמה
               </a>
-              <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
-                <Instagram className="w-4 h-4" /> DM להזמנות
+              <a href="https://wa.me/972507755668" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
+                <MessageCircle className="w-4 h-4" /> וואטסאפ להזמנות
               </a>
             </div>
             <div className="flex items-center gap-6 mt-12 text-xs text-muted-foreground">
