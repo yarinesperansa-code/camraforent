@@ -100,8 +100,8 @@ function Index() {
               <a href="#cameras" className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-6 py-3 text-sm hover:opacity-90 transition">
                 <Sparkles className="w-4 h-4" /> בחרו מצלמה
               </a>
-              <a href="https://www.instagram.com/camera_for_rent1/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
-                <Instagram className="w-4 h-4" /> DM להזמנות
+              <a href="https://wa.me/972507755668" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-foreground/20 rounded-full px-6 py-3 text-sm hover:bg-foreground/5 transition">
+                <MessageCircle className="w-4 h-4" /> וואטסאפ להזמנות
               </a>
             </div>
             <div className="flex items-center gap-6 mt-12 text-xs text-muted-foreground">
